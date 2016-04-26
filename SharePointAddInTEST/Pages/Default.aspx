@@ -30,101 +30,23 @@
 
 <%-- Le balisage et le script de l'élément Content suivant seront placés dans la partie <body> de la page --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
-
-    <div class="ms-TextField">
-        <label class="ms-Label">Title</label>
-        <input class="ms-TextField-field" data-bind="value: $root.Title" />
+     <div id="rightSide" data-bind="foreach: Customers">
+        <ul class="ms-List" data-bind="click: $root.getSelectedCustomer">
+            <li class="ms-ListItem">
+                <span class="ms-ListItem-primaryText" data-bind="text: Title"></span>
+                <span class="ms-ListItem-secondaryText" data-bind="text: FirstName"></span>
+                <span class="ms-ListItem-tertiaryText" data-bind="text: LastName"></span>
+                <div class="ms-ListItem-actions">
+                    <div class="ms-ListItem-action"><i class="ms-Icon ms-Icon--mail"></i></div>
+                    <div class="ms-ListItem-action"><i class="ms-Icon ms-Icon--trash"></i></div>
+                    <div class="ms-ListItem-action"><i class="ms-Icon ms-Icon--flag"></i></div>
+                    <div class="ms-ListItem-action"><i class="ms-Icon ms-Icon--pinLeft"></i></div>
+                </div>
+            </li>
+        </ul>
     </div>
-    <div class="ms-TextField">
-        <label class="ms-Label">First Name</label>
-        <input class="ms-TextField-field" data-bind="value: $root.FirstName" />
-    </div>
-    <div class="ms-TextField">
-        <label class="ms-Label">Family name</label>
-        <input class="ms-TextField-field" data-bind="value: $root.LastName" />
-    </div>
-
-    <button class="ms-Button" data-bind="click: $root.clear">
-        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-        <span class="ms-Button-label">Clear</span>
-        <span class="ms-Button-description">Description of the action this button takes</span>
-    </button>
-
-    <button class="ms-Button" data-bind="click: $root.createCustomer">
-        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-        <span class="ms-Button-label">Create</span>
-        <span class="ms-Button-description">Description of the action this button takes</span>
-    </button>
-
-    <button class="ms-Button" data-bind="click: $root.deleteCustomer">
-        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-        <span class="ms-Button-label">Delete</span>
-        <span class="ms-Button-description">Description of the action this button takes</span>
-    </button>
-
-    <button class="ms-Button" data-bind="click: $root.updateCustomer">
-        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-        <span class="ms-Button-label">Update</span>
-        <span class="ms-Button-description">Description of the action this button takes</span>
-    </button>
-
-    <table id="tbl">
+    <%--<table id="tbl">
         <tr>
-            <td>
-                <table>
-                    <%--<tr>
-                        <td colspan="4" class=".ms-font-m-plus">Title</td>
-                        <td colspan="4">
-                            <input type="text" id="txtcatid" data-bind="value: $root.Title" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">First Name</td>
-                        <td colspan="4">
-                            <input type="text" id="txtcatfirstname" data-bind="value: $root.FirstName" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">Last Name</td>
-                        <td colspan="4">
-                            <input type="text" id="txtcatlastname" data-bind="value: $root.LastName" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <button class="ms-Button" data-bind="click: $root.clear">
-                                <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-                                <span class="ms-Button-label">Clear</span>
-                                <span class="ms-Button-description">Description of the action this button takes</span>
-                            </button>
-                            <input type="button" id="btnnew" value="Clear"/>
-                        </td>
-                        <td colspan="4">
-                            <button class="ms-Button" data-bind="click: $root.createCustomer">
-                                <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-                                <span class="ms-Button-label">Create</span>
-                                <span class="ms-Button-description">Description of the action this button takes</span>
-                            </button>
-                            <input type="button" id="btnsave" value="Create" data-bind="click: $root.createCustomer" />                       </td>
-                        <td colspan="4">
-                            <button class="ms-Button" data-bind="click: $root.deleteCustomer">
-                                <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-                                <span class="ms-Button-label">Delete</span>
-                                <span class="ms-Button-description">Description of the action this button takes</span>
-                            </button>
-                            <input type="button" id="btnupdate" value="Delete" data-bind="click: $root.deleteCustomer" />
-                        </td>
-                        <td colspan="4">
-                            <button class="ms-Button" data-bind="click: $root.updateCustomer">
-                                <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-                                <span class="ms-Button-label">Update</span>
-                                <span class="ms-Button-description">Description of the action this button takes</span>
-                            </button>
-                          <input type="button" id="btndelete" value="Update" data-bind="click: $root.updateCustomer" />
-                        </td>
-                    </tr>--%>
-                </table>
-            </td>
             <td>
                 <div class="Container">
                     <table class="table">
@@ -153,6 +75,68 @@
             </td>
         </tr>
     </table>
+    <div class="ms-Table" data-bind="foreach: Customers">
+        <ul data-bind="click: $root.getSelectedCustomer">
+            <li>
+                <div class="ms-Table-row">
+                    <span class="ms-Table-rowCheck"></span>
+                    <span class="ms-Table-cell" data-bind="text: Title"></span>
+                    <span class="ms-Table-cell" data-bind="text: FirstName"></span>
+                    <span class="ms-Table-cell" data-bind="text: LastName"></span>
+                </div>
+            </li>
+        </ul>
+    </div>--%>
+    <hr> 
+   <div class="ms-CommandBar">
+    <div class="ms-CommandBar-sideCommands">
+    <div class="ms-CommandBarItem">
+      <div class="ms-CommandBarItem-linkWrapper">
+        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.clear"> <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--reactivate"></span> <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular" >Clear</span> <i class="ms-CommandBarItem-chevronDown ms-Icon ms-Icon--chevronDown"></i> </a>
+      </div>
+    </div>
+  </div>
+  <div class="ms-CommandBar-mainArea">
+    <div class="ms-CommandBarItem">
+      <div class="ms-CommandBarItem-linkWrapper">
+        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.createCustomer"> <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--star"></span> <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">New</span></a>
+      </div>
+    </div>
+    <div class="ms-CommandBarItem">
+      <div class="ms-CommandBarItem-linkWrapper">
+        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.updateCustomer"> <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--save"></span> <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Update</span> </a>
+      </div>
+    </div>
+    <div class="ms-CommandBarItem">
+      <div class="ms-CommandBarItem-linkWrapper">
+        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.deleteCustomer"> <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--trash"></span> <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Delete</span> </a>
+      </div>
+    </div>
+       <div class="ms-CommandBarItem ms-CommandBarItem--iconOnly ms-CommandBarItem-overflow">
+      <div class="ms-CommandBarItem-linkWrapper">
+        <a class="ms-CommandBarItem-link" tabindex="2"> <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--ellipsis"></span> <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Ellipsis</span> <i class="ms-CommandBarItem-chevronDown ms-Icon ms-Icon--chevronDown"></i> </a>
+      </div>
+      <ul class="ms-CommandBar-overflowMenu ms-ContextualMenu"></ul>
+    </div>
+    
+  </div>
+</div>
+     <div id="leftSide" class="ms-u-slideUpOut20">
+    <div class="ms-TextField">
+        <label class="ms-Label">Title</label>
+        <input class="ms-TextField-field" data-bind="value: $root.Title" />
+    </div>
+    <div class="ms-TextField">
+        <label class="ms-Label">First Name</label>
+        <input class="ms-TextField-field" data-bind="value: $root.FirstName" />
+    </div>
+    <div class="ms-TextField">
+        <label class="ms-Label">Family name</label>
+        <input class="ms-TextField-field" data-bind="value: $root.LastName" />
+    </div>
+       
+    
+        </div>
     <div>
         <span data-bind="text: error"></span>
     </div>
