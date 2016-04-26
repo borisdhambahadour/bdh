@@ -9,7 +9,8 @@
 <%-- Le balisage et le script de l'élément Content suivant seront placés dans la partie <head> de la page --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
     <script type="text/javascript" src="../Scripts/jquery-1.9.1.min.js"></script>
-    <SharePoint:ScriptLink name="sp.js" runat="server" OnDemand="true" LoadAfterUI="true" Localizable="false" />
+    <script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
+    <script type="text/javascript" src="/_layouts/15/sp.js"></script>
     <meta name="WebPartPageExpansion" content="full" />
 
     <!-- Ajoutez vos styles CSS au fichier suivant -->
@@ -28,23 +29,78 @@
 <%-- Le balisage et le script de l'élément Content suivant seront placés dans la partie <body> de la page --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
 
+    <table id="tbl">
+        <tr>
+            <td>
+                <table>
+                   
+                    <tr>
+                        <td colspan="4">Title</td>
+                        <td colspan="4">
+                            <input type="text" id="txtcatid" data-bind="value: $root.Title" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">First Name</td>
+                        <td colspan="4">
+                            <input type="text" id="txtcatfirstname" data-bind="value: $root.FirstName" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">Last Name</td>
+                        <td colspan="4">
+                            <input type="text" id="txtcatlastname" data-bind="value: $root.LastName" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <input type="button" id="btnnew" value="Clear" data-bind="click: $root.clear" />
+                        </td>
+                        <td colspan="4">
+                            <input type="button" id="btnsave" value="Create" data-bind="click: $root.createCustomer" />
+                        </td>
+                        <td colspan="4">
+                            <input type="button" id="btnupdate" value="Delete" data-bind="click: $root.deleteCustomer" />
+                        </td>
+                        <td colspan="4">
+                            <input type="button" id="btndelete" value="Update" data-bind="click: $root.updateCustomer" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <div class="Container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: Customers">
+                            <tr data-bind="click: $root.getSelectedCustomer">
+                                <td>
+                                    <span data-bind="text: Title"></span>
+                                </td>
+                                <td>
+                                    <span data-bind="text: FirstName"></span>
+                                </td>
+                                <td>
+                                    <span data-bind="text: LastName"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+
     <div>
-        <p id="message">
-            <!-- Le contenu suivant sera remplacé par le nom de l'utilisateur durant l'exécution de l'application. Consultez App.js -->
-            initializing...
-        </p>
+        <span data-bind="text: error"></span>
     </div>
-    <div id="customerSVC">
-			<ul data-bind="foreach: allCustomers">
-			
-				<li>
-					<span data-bind="text: getID()"></span><span> - </span>
-					<span data-bind="text: getTitle()"> </span><span> / </span>
-					<%--<span data-bind="text: getFirstName()"></span><span> / </span>
-					<span data-bind="text: getLastName()"></span><span> / </span>
-					<span data-bind="text: getPhoneNumber()"></span><span></span>--%>
-				</li>
-			</ul>
-		</div>
 
 </asp:Content>

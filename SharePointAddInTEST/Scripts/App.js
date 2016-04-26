@@ -1,80 +1,230 @@
 ﻿'use strict';
 
-ExecuteOrDelayUntilScriptLoaded(initializePage, "sp.js");
+var SPHostUrl;
+var SPAppWebUrl;
 
-function initializePage() {
-    var context = SP.ClientContext.get_current();
-    var user = context.get_web().get_currentUser();
-
-   
-    // Cette fonction prépare, charge, puis exécute une requête SharePoint pour obtenir des informations sur les utilisateurs actuels
-    function getUserName() {
-        context.load(user);
-        context.executeQueryAsync(onGetUserNameSuccess, onGetUserNameFail);
+// read URL parameters
+function retrieveQueryStringParameter(param) {
+    var params = document.URL.split("?")[1].split("&");
+    var strParams = "";
+    for (var i = 0; i < params.length; i = i + 1) {
+        var singleParam = params[i].split("=");
+        if (singleParam[0] == param) {
+            return singleParam[1];
+        }
     }
-
-    // Cette fonction est exécutée si l'appel ci-dessus est réussi
-    // Elle remplace le contenu de l'élément 'message' par le nom de l'utilisateur
-    function onGetUserNameSuccess() {
-        $('#message').text('Hello ' + user.get_title());
-    }
-
-    // Cette fonction est exécutée en cas d'échec de l'appel ci-dessus
-    function onGetUserNameFail(sender, args) {
-        alert('Failed to get user name. Error:' + args.get_message());
-    }
-
-    var TestApp = window.TestApp || {};
-
-    TestApp.Customer = function (_id, _title, _firstName, _lastName, _phoneNumber) {
-
-        var f_getID = function () { return _id; },
-        f__getTitle = function () { return _title; },
-        f_getFirstName = function () { return _firstName; },
-        f_getLastName = function () { return _lastName; },
-        f_getPhoneNumber = function () { return _phoneNumber; };
-
-
-        return {
-            getID: f_getID,
-            getTitle: f__getTitle,
-            getFirstName: f_getFirstName,
-            getLastName: f_getLastName,
-            getPhoneNumber: f_getPhoneNumber
-        };
-    }
-
-    TestApp.AllService = function () {
-        var _allCustomers = ko.observableArray();
-        var f_getCustomer = function () {
-            var web = context.get_web(),
-                   list = web.get_lists().getByTitle('Customer'),
-                   items = list.getItems();
-
-            var customers = context.loadQuery(items);
-
-            context.executeQueryAsync(function () {
-                customers.forEach(function (customer) {
-                    _allCustomers.push(new TestApp.Customer(customer.id, customer.title, customer.firstName, customer.lastName, customer.phoneNumber));
-                });
-            }, function (error) {
-                console.log(error);
-            });
-        };
-
-        return {
-            allCustomers: _allCustomers,
-            // ville : _ville,
-            // villeDescription : _villeDescription,
-            get_Customers: f_getCustomer
-        };
-    }
-    // Ce code s'exécute quand le modèle DOM est prêt. Par ailleurs, il crée un objet de contexte nécessaire à l'utilisation du modèle objet SharePoint
-    $(document).ready(function () {
-        getUserName();
-        var customersService = new TestApp.AllService();
-        ko.applyBindings(customersService, document.getElementById('customerSVC'));
-        customersService.get_Customers();
-    });
-
 }
+
+
+SPAppWebUrl = decodeURIComponent(retrieveQueryStringParameter("SPAppWebUrl"));
+SPHostUrl = decodeURIComponent(retrieveQueryStringParameter("SPHostUrl"));
+
+//Get the ViewModel in during the document load so that all observable will be available for the Databindng 
+$(document).ready(function () {
+    getModel();
+
+});
+
+//Function to Instantiate the ViewModel
+function getModel() {
+    var vm = new crudViewModel();
+
+    ko.applyBindings(vm);
+    vm.getCustomers();
+}
+
+var crudViewModel = function () {
+    var self = this;
+    var listName = "Customer";
+
+    self.Id = ko.observable();
+    self.Title = ko.observable();
+    self.FirstName = ko.observable();
+    self.LastName = ko.observable();
+
+    self.Customer = {
+        Id: self.Id,
+        Title: self.Title,
+        FirstName: self.FirstName,
+        LastName: self.LastName
+    };
+
+    self.url = SPAppWebUrl + "/_api/SP.AppContextSite(@target)" +
+    "/web/lists/getbytitle('" + listName + "')/items?" +
+    "@target='" + SPHostUrl + "'";
+
+    self.Customers = ko.observableArray();
+    self.error = ko.observable();
+
+    //Function to Read all Categories 
+    self.getCustomers = function () {
+        $.ajax({
+            url: self.url,
+            method: "GET",
+            headers: { "Accept": "application/json; odata=verbose" }, // return data format
+            success: function (data) {
+                self.Customers(data.d.results);
+            },
+            error: function (data) {
+                self.error("Error in processing request " + data.success);
+            }
+        });
+    };
+
+    //Function to Create  Customer
+    self.createCustomer = function () {
+        var itemType = "SP.Data.CustomerListItem";
+        var customer = {
+            "__metadata": { "type": itemType },
+            "Id": self.Id,
+            "Title": self.Title,
+            "FirstName": self.FirstName,
+            "LastName": self.LastName
+        };
+
+        $.ajax({
+            url: self.url,
+            type: "POST",
+            contentType: "application/json;odata=verbose",
+            data: ko.toJSON(customer),
+            headers: {
+                "Accept": "application/json;odata=verbose", // return data format
+                "X-RequestDigest": $("#__REQUESTDIGEST").val()
+            },
+            success: function (data) {
+                self.getCustomers();
+                self.clear();
+            },
+            error: function (data) {
+                self.error("Error in processing request " + data.status);
+            }
+        });
+    };
+
+    //Function to get Specific Customer based upon Id
+    function getCustomerById(callback) {
+        var id = self.Id();
+
+        var url = SPAppWebUrl + "/_api/SP.AppContextSite(@target)" +
+      "/web/lists/getbytitle('" + listName + "')/items(" + id + ")?" +
+      "@target='" + SPHostUrl + "'";
+
+        //  var url = _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items(" + id + ")";
+
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            headers: { "Accept": "application/json;odata=verbose" }, // return data format
+            success: function (data) {
+                // alert(JSON.stringify(data.d.__metadata.uri));
+                //self.Title(data.d.Title);
+                //self.CustomerName(data.d.CustomerName);
+                callback(data);
+            },
+            error: function (data) {
+                self.error("Error in processing request");
+            }
+        });
+
+    };
+
+    //Function to Update Customer
+    self.updateCustomer = function () {
+
+        getCustomerById(function (data) {
+            var itemType = "SP.Data.CustomerListItem";
+            var id = self.Id();
+            var customer = {
+                "__metadata": { "type": itemType },
+                "Id": self.Id,
+                "Title": self.Title,
+                "FirstName": self.FirstName,
+                "LastName": self.LastName
+            };
+            var url = SPAppWebUrl + "/_api/SP.AppContextSite(@target)" +
+        "/web/lists/getbytitle('" + listName + "')/items(" + id + ")?" +
+        "@target='" + SPHostUrl + "'";
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                contentType: "application/json;odata=verbose",
+                data: ko.toJSON(customer),
+                headers: {
+                    "Accept": "application/json;odata=verbose", // return data format
+                    "X-RequestDigest": $("#__REQUESTDIGEST").val(),
+                    "X-HTTP-Method": "MERGE",
+                    "If-Match": data.d.__metadata.etag
+                },
+                success: function (data) {
+                    self.getCustomers();
+                    self.clear();
+                },
+                error: function (data) {
+                    self.error("Error in processing request " + data.status + "    " + data.statusCode);
+                }
+            });
+        });
+    };
+
+    //Function to Delete Customer
+    self.deleteCustomer = function () {
+        getCustomerById(function (data) {
+            var itemType = "SP.Data.CustomerListItem";
+            var id = self.Id();
+            var customer = {
+                "__metadata": { "type": itemType },
+                "Id": self.Id,
+                "Title": self.Title,
+                "FirstName": self.FirstName,
+                "LastName": self.LastName
+            };
+            var url = SPAppWebUrl + "/_api/SP.AppContextSite(@target)" +
+       "/web/lists/getbytitle('" + listName + "')/items(" + id + ")?" +
+       "@target='" + SPHostUrl + "'";
+
+            alert("Procssing DELETE");
+            $.ajax({
+                url: url,
+                type: "POST",
+                headers: {
+                    "Accept": "application/json;odata=verbose",
+                    "X-RequestDigest": $("#__REQUESTDIGEST").val(),
+                    "X-HTTP-Method": "DELETE",
+                    "If-Match": data.d.__metadata.etag
+                },
+                success: function (data) {
+                    self.getCustomers();
+                    self.clear();
+                },
+                error: function (data) {
+                    self.error("Error in processing request " + data.status + "    " + data.statusCode + "Please try again");
+                }
+            });
+        });
+
+    };
+
+    //Function to Select Customer used for Update and Delete
+    self.getSelectedCustomer = function (customer) {
+        self.Id(customer.Id);
+        self.Title(customer.Title);
+        self.FirstName(customer.FirstName);
+        self.LastName(customer.LastName);
+    };
+
+    //Function to clear all Textboxes
+    self.clear = function () {
+        self.Id(0);
+        self.Title("");
+        self.FirstName("");
+        self.LastName("");
+    };
+
+};
+
+
+
+
+
