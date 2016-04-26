@@ -43,6 +43,8 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="Fabric\Components\Button\Button.json" />
+    <None Include="Fabric\Components\Button\Button.scss" />
     <None Include="Lists\Employes\EmployesInstance\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{63f8cf56-3fe0-4b36-9888-f8475315cab2}</SharePointProjectItemId>
     </None>
@@ -53,11 +55,31 @@
     <None Include="Pages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{e0ffa79c-fb1d-41be-a228-748b19fd8ada}</SharePointProjectItemId>
     </None>
+    <Content Include="Elements.xml" />
+    <Content Include="Content\fabric.components.css" />
+    <Content Include="Content\fabric.components.min.css" />
+    <Content Include="Content\fabric.components.rtl.css" />
+    <Content Include="Content\fabric.components.rtl.min.css" />
+    <Content Include="Content\fabric.css" />
+    <Content Include="Content\fabric.min.css" />
+    <Content Include="Content\fabric.rtl.css" />
+    <Content Include="Content\fabric.rtl.min.css" />
+    <Content Include="Fabric\Components\Button\Button.Command.html" />
+    <Content Include="Fabric\Components\Button\Button.Compound.html" />
+    <Content Include="Fabric\Components\Button\Button.css" />
+    <Content Include="Fabric\Components\Button\Button.Hero.html" />
+    <Content Include="Fabric\Components\Button\Button.html" />
+    <Content Include="Fabric\Components\Button\Button.min.css" />
+    <Content Include="Fabric\Components\Button\Button.Primary.html" />
     <Content Include="Lists\Employes\Elements.xml" />
     <Content Include="Lists\Employes\EmployesInstance\Elements.xml" />
     <Content Include="Lists\Employes\Schema.xml" />
+    <Content Include="Pages\AddInFZTH.html" />
     <Content Include="Pages\Elements.xml" />
     <Content Include="Pages\Default.aspx" />
+    <None Include="SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{00e9e091-f9f9-4f63-8845-6cd7e6efcef2}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\jquery-1.9.1.min.map" />
@@ -69,6 +91,8 @@
     <Content Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery.fabric.js" />
+    <Content Include="Scripts\jquery.fabric.min.js" />
     <Content Include="Scripts\knockout-3.4.0.js" />
     <Content Include="Scripts\_references.js" />
   </ItemGroup>
@@ -107,6 +131,7 @@
       <SubType>Designer</SubType>
     </AppManifestFile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="RootModule">
+    <File Path="Fabric\Components\Button\Button.Command.html" Url="Fabric/Components/Button/Button.Command.html" ReplaceContent="TRUE" />
+    <File Path="Fabric\Components\Button\Button.Compound.html" Url="Fabric/Components/Button/Button.Compound.html" ReplaceContent="TRUE" />
+    <File Path="Fabric\Components\Button\Button.css" Url="Fabric/Components/Button/Button.css" ReplaceContent="TRUE" />
+    <File Path="Fabric\Components\Button\Button.Hero.html" Url="Fabric/Components/Button/Button.Hero.html" ReplaceContent="TRUE" />
+    <File Path="Fabric\Components\Button\Button.html" Url="Fabric/Components/Button/Button.html" ReplaceContent="TRUE" />
+    <File Path="Fabric\Components\Button\Button.json" Url="Fabric/Components/Button/Button.json" ReplaceContent="TRUE" />
+    <File Path="Fabric\Components\Button\Button.min.css" Url="Fabric/Components/Button/Button.min.css" ReplaceContent="TRUE" />
+    <File Path="Fabric\Components\Button\Button.Primary.html" Url="Fabric/Components/Button/Button.Primary.html" ReplaceContent="TRUE" />
+    <File Path="Fabric\Components\Button\Button.scss" Url="Fabric/Components/Button/Button.scss" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

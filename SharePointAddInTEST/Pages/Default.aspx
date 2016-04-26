@@ -15,6 +15,8 @@
 
     <!-- Ajoutez vos styles CSS au fichier suivant -->
     <link rel="Stylesheet" type="text/css" href="../Content/App.css" />
+    <link rel="stylesheet" type="text/css" href="../Content/fabric.min.css" />
+    <link rel="stylesheet" type="text/css" href="../Content/fabric.components.min.css" />
 
     <!-- Ajoutez votre code JavaScript au fichier suivant -->
     <script type="text/javascript" src="../Scripts/App.js"></script>
@@ -29,13 +31,49 @@
 <%-- Le balisage et le script de l'élément Content suivant seront placés dans la partie <body> de la page --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
 
+    <div class="ms-TextField">
+        <label class="ms-Label">Title</label>
+        <input class="ms-TextField-field" data-bind="value: $root.Title" />
+    </div>
+    <div class="ms-TextField">
+        <label class="ms-Label">First Name</label>
+        <input class="ms-TextField-field" data-bind="value: $root.FirstName" />
+    </div>
+    <div class="ms-TextField">
+        <label class="ms-Label">Family name</label>
+        <input class="ms-TextField-field" data-bind="value: $root.LastName" />
+    </div>
+
+    <button class="ms-Button" data-bind="click: $root.clear">
+        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+        <span class="ms-Button-label">Clear</span>
+        <span class="ms-Button-description">Description of the action this button takes</span>
+    </button>
+
+    <button class="ms-Button" data-bind="click: $root.createCustomer">
+        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+        <span class="ms-Button-label">Create</span>
+        <span class="ms-Button-description">Description of the action this button takes</span>
+    </button>
+
+    <button class="ms-Button" data-bind="click: $root.deleteCustomer">
+        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+        <span class="ms-Button-label">Delete</span>
+        <span class="ms-Button-description">Description of the action this button takes</span>
+    </button>
+
+    <button class="ms-Button" data-bind="click: $root.updateCustomer">
+        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+        <span class="ms-Button-label">Update</span>
+        <span class="ms-Button-description">Description of the action this button takes</span>
+    </button>
+
     <table id="tbl">
         <tr>
             <td>
                 <table>
-                   
-                    <tr>
-                        <td colspan="4">Title</td>
+                    <%--<tr>
+                        <td colspan="4" class=".ms-font-m-plus">Title</td>
                         <td colspan="4">
                             <input type="text" id="txtcatid" data-bind="value: $root.Title" />
                         </td>
@@ -54,18 +92,37 @@
                     </tr>
                     <tr>
                         <td colspan="4">
-                            <input type="button" id="btnnew" value="Clear" data-bind="click: $root.clear" />
+                            <button class="ms-Button" data-bind="click: $root.clear">
+                                <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+                                <span class="ms-Button-label">Clear</span>
+                                <span class="ms-Button-description">Description of the action this button takes</span>
+                            </button>
+                            <input type="button" id="btnnew" value="Clear"/>
                         </td>
                         <td colspan="4">
-                            <input type="button" id="btnsave" value="Create" data-bind="click: $root.createCustomer" />
-                        </td>
+                            <button class="ms-Button" data-bind="click: $root.createCustomer">
+                                <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+                                <span class="ms-Button-label">Create</span>
+                                <span class="ms-Button-description">Description of the action this button takes</span>
+                            </button>
+                            <input type="button" id="btnsave" value="Create" data-bind="click: $root.createCustomer" />                       </td>
                         <td colspan="4">
+                            <button class="ms-Button" data-bind="click: $root.deleteCustomer">
+                                <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+                                <span class="ms-Button-label">Delete</span>
+                                <span class="ms-Button-description">Description of the action this button takes</span>
+                            </button>
                             <input type="button" id="btnupdate" value="Delete" data-bind="click: $root.deleteCustomer" />
                         </td>
                         <td colspan="4">
-                            <input type="button" id="btndelete" value="Update" data-bind="click: $root.updateCustomer" />
+                            <button class="ms-Button" data-bind="click: $root.updateCustomer">
+                                <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+                                <span class="ms-Button-label">Update</span>
+                                <span class="ms-Button-description">Description of the action this button takes</span>
+                            </button>
+                          <input type="button" id="btndelete" value="Update" data-bind="click: $root.updateCustomer" />
                         </td>
-                    </tr>
+                    </tr>--%>
                 </table>
             </td>
             <td>
@@ -96,11 +153,7 @@
             </td>
         </tr>
     </table>
-
-
-
     <div>
         <span data-bind="text: error"></span>
     </div>
-
 </asp:Content>

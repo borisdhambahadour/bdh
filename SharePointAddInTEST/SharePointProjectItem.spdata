@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Type="ElementManifest" />
+    <ProjectItemFile Source="Fabric\Components\Button\Button.Command.html" Target="Fabric\Components\Button\" Type="ElementFile" />
+    <ProjectItemFile Source="Fabric\Components\Button\Button.Compound.html" Target="Fabric\Components\Button\" Type="ElementFile" />
+    <ProjectItemFile Source="Fabric\Components\Button\Button.css" Target="Fabric\Components\Button\" Type="ElementFile" />
+    <ProjectItemFile Source="Fabric\Components\Button\Button.Hero.html" Target="Fabric\Components\Button\" Type="ElementFile" />
+    <ProjectItemFile Source="Fabric\Components\Button\Button.html" Target="Fabric\Components\Button\" Type="ElementFile" />
+    <ProjectItemFile Source="Fabric\Components\Button\Button.json" Target="Fabric\Components\Button\" Type="ElementFile" />
+    <ProjectItemFile Source="Fabric\Components\Button\Button.min.css" Target="Fabric\Components\Button\" Type="ElementFile" />
+    <ProjectItemFile Source="Fabric\Components\Button\Button.Primary.html" Target="Fabric\Components\Button\" Type="ElementFile" />
+    <ProjectItemFile Source="Fabric\Components\Button\Button.scss" Target="Fabric\Components\Button\" Type="ElementFile" />
+  </Files>
+</ProjectItem>
