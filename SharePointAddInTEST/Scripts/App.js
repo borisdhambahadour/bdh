@@ -216,7 +216,6 @@ var crudViewModel = function () {
 
     //Function to clear all Textboxes
     self.clear = function () {
-        self.Id(0);
         self.Title("");
         self.FirstName("");
         self.LastName("");
