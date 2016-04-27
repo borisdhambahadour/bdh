@@ -1,94 +1,87 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Chrome control host page</title>
-    <script src="//ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js"
-            type="text/javascript">
-    </script>
-    <script type="text/javascript"
-            src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js">
-    </script>
-    <script type="text/javascript"
-            src="ChromeLoader.js">
-    </script>
+    <title>Cellenza SharePoint Add-in Demo</title>
+    <script type="text/javascript" src="../Scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
+    <script type="text/javascript" src="/_layouts/15/sp.js"></script>
+
+    <!-- Ajoutez vos styles CSS au fichier suivant -->
+    <link rel="Stylesheet" type="text/css" href="../Content/App.css" />
+    <link rel="stylesheet" type="text/css" href="../Content/fabric.min.css" />
+    <link rel="stylesheet" type="text/css" href="../Content/fabric.components.min.css" />
+
+    <!-- Ajoutez votre code JavaScript au fichier suivant -->
+    <script type="text/javascript" src="../Scripts/App.js"></script>
+    <script type="text/javascript" src="../Scripts/knockout-3.4.0.js"></script>
+    <script type="text/javascript" src="/_layouts/15/sp.ui.controls.js"></script>
     <script type="text/javascript">
-"use strict";
+        var hostweburl;
 
-var hostweburl;
+        //load the SharePoint resources
+        $(document).ready(function () {
+            //Get the URI decoded URL.
+            hostweburl =
+                decodeURIComponent(
+                    getQueryStringParameter("SPHostUrl")
+            );
 
-//load the SharePoint resources
-$(document).ready(function () {
-    //Get the URI decoded URL.
-    hostweburl =
-        decodeURIComponent(
-            getQueryStringParameter("SPHostUrl")
-    );
+            // The SharePoint js files URL are in the form:
+            // web_url/_layouts/15/resource
+            var scriptbase = hostweburl + "/_layouts/15/";
 
-    // The SharePoint js files URL are in the form:
-    // web_url/_layouts/15/resource
-    var scriptbase = hostweburl + "/_layouts/15/";
+            // Load the js file and continue to the
+            //   success handler
+            $.getScript(scriptbase + "SP.UI.Controls.js", renderChrome)
+        });
 
-    // Load the js file and continue to the
-    //   success handler
-    $.getScript(scriptbase + "SP.UI.Controls.js", renderChrome)
-});
+        //Function to prepare the options and render the control
+        function renderChrome() {
 
-// Callback for the onCssLoaded event defined
-//  in the options object of the chrome control
-function chromeLoaded() {
-    // When the page has loaded the required
-    //  resources for the chrome control,
-    //  display the page body.
-    $("body").show();
-}
+            // The Help, Account and Contact pages receive the
+            //   same query string parameters as the main page
+            var options = {
+                "appIconUrl": hostweburl + "/_layouts/15/images/siteIcon.png?rev=26",
+                "appTitle": "Cellenza SharePoint Add-in Demo",
+                "settingsLinks": [
+                     {
+                         "linkUrl": "Help.html?"
+                             + document.URL.split("?")[1],
+                         "displayName": "Help"
+                     },
+                     {
+                         "linkUrl": "Account.html?"
+                             + document.URL.split("?")[1],
+                         "displayName": "Account settings"
+                     },
+                    {
+                        "linkUrl": "Contact.html?"
+                            + document.URL.split("?")[1],
+                        "displayName": "Contact us"
+                    }
+                ]
+            };
 
-//Function to prepare the options and render the control
-function renderChrome() {
-    // The Help, Account and Contact pages receive the
-    //   same query string parameters as the main page
-    var options = {
-        "appIconUrl": "siteicon.png",
-        "appTitle": "Chrome control add-in",
-        "appHelpPageUrl": "Help.html?"
-            + document.URL.split("?")[1],
-        // The onCssLoaded event allows you to
-        //  specify a callback to execute when the
-        //  chrome resources have been loaded.
-        "onCssLoaded": "chromeLoaded()",
-        "settingsLinks": [
-            {
-                "linkUrl": "Account.html?"
-                    + document.URL.split("?")[1],
-                "displayName": "Account settings"
-            },
-            {
-                "linkUrl": "Contact.html?"
-                    + document.URL.split("?")[1],
-                "displayName": "Contact us"
+            var nav = new SP.UI.Controls.Navigation(
+                                    "chrome_ctrl_placeholder",
+                                    options
+                                );
+            nav.setVisible(true);
+        }
+
+        // Function to retrieve a query string value.
+        // For production purposes you may want to use
+        //  a library to handle the query string.
+        function getQueryStringParameter(paramToRetrieve) {
+            var params =
+                document.URL.split("?")[1].split("&");
+            var strParams = "";
+            for (var i = 0; i < params.length; i = i + 1) {
+                var singleParam = params[i].split("=");
+                if (singleParam[0] == paramToRetrieve)
+                    return singleParam[1];
             }
-        ]
-    };
-
-    var nav = new SP.UI.Controls.Navigation(
-                            "chrome_ctrl_placeholder",
-                            options
-                        );
-    nav.setVisible(true);
-}
-
-// Function to retrieve a query string value.
-// For production purposes you may want to use
-//  a library to handle the query string.
-function getQueryStringParameter(paramToRetrieve) {
-    var params =
-        document.URL.split("?")[1].split("&");
-    var strParams = "";
-    for (var i = 0; i < params.length; i = i + 1) {
-        var singleParam = params[i].split("=");
-        if (singleParam[0] == paramToRetrieve)
-            return singleParam[1];
-    }
-}
+        }
     </script>
 </head>
 
@@ -104,12 +97,78 @@ function getQueryStringParameter(paramToRetrieve) {
 
     <!-- The chrome control also makes the SharePoint
           Website stylesheet available to your page -->
-    <h1 class="ms-accentText">Main content</h1>
-    <h2 class="ms-accentText">The chrome control</h2>
+    <h1 class="ms-accentText">Employes</h1>
+    <h2 class="ms-accentText">List of employees</h2>
     <div id="MainContent">
-        This is the page's main content.
-        You can use the links in the header to go to the help,
-        account or contact pages.
+        <div id="rightSide" data-bind="foreach: Customers">
+            <ul class="ms-List" data-bind="click: $root.getSelectedCustomer">
+                <li class="ms-ListItem is-selectable" onclick="$(this).toggleClass('is-selected');">
+                    <span class="ms-ListItem-primaryText" data-bind="text: Title"></span>
+                    <span class="ms-ListItem-secondaryText" data-bind="text: FirstName"></span>
+                    <span class="ms-ListItem-tertiaryText" data-bind="text: LastName"></span>
+                    <div class="ms-ListItem-selectionTarget js-toggleSelection" "></div>
+                    <div class="ms-ListItem-actions">
+                        <div class="ms-ListItem-action"><i class="ms-Icon ms-Icon--mail"></i></div>
+                        <div class="ms-ListItem-action"><i class="ms-Icon ms-Icon--trash"></i></div>
+                        <div class="ms-ListItem-action"><i class="ms-Icon ms-Icon--flag"></i></div>
+                        <div class="ms-ListItem-action"><i class="ms-Icon ms-Icon--pinLeft"></i></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <div class="ms-CommandBar">
+            <div class="ms-CommandBar-sideCommands">
+                <div class="ms-CommandBarItem">
+                    <div class="ms-CommandBarItem-linkWrapper">
+                        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.clear"> <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--reactivate"></span> <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Clear</span> <i class="ms-CommandBarItem-chevronDown ms-Icon ms-Icon--chevronDown"></i> </a>
+                    </div>
+                </div>
+            </div>
+            <div class="ms-CommandBar-mainArea">
+                <div class="ms-CommandBarItem">
+                    <div class="ms-CommandBarItem-linkWrapper">
+                        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.createCustomer"> <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--star"></span> <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">New</span></a>
+                    </div>
+                </div>
+                <div class="ms-CommandBarItem">
+                    <div class="ms-CommandBarItem-linkWrapper">
+                        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.updateCustomer"> <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--save"></span> <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Update</span> </a>
+                    </div>
+                </div>
+                <div class="ms-CommandBarItem">
+                    <div class="ms-CommandBarItem-linkWrapper">
+                        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.deleteCustomer"> <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--trash"></span> <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Delete</span> </a>
+                    </div>
+                </div>
+                <div class="ms-CommandBarItem ms-CommandBarItem--iconOnly ms-CommandBarItem-overflow">
+                    <div class="ms-CommandBarItem-linkWrapper">
+                        <a class="ms-CommandBarItem-link" tabindex="2"> <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--ellipsis"></span> <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Ellipsis</span> <i class="ms-CommandBarItem-chevronDown ms-Icon ms-Icon--chevronDown"></i> </a>
+                    </div>
+                    <ul class="ms-CommandBar-overflowMenu ms-ContextualMenu"></ul>
+                </div>
+
+            </div>
+        </div>
+        <div id="leftSide">
+            <div class="ms-TextField">
+                <label class="ms-Label">Title</label>
+                <input class="ms-TextField-field" data-bind="value: $root.Title" />
+            </div>
+            <div class="ms-TextField">
+                <label class="ms-Label">First Name</label>
+                <input class="ms-TextField-field" data-bind="value: $root.FirstName" />
+            </div>
+            <div class="ms-TextField">
+                <label class="ms-Label">Family name</label>
+                <input class="ms-TextField-field" data-bind="value: $root.LastName" />
+            </div>
+
+
+        </div>
+        <div>
+            <span data-bind="text: error"></span>
+        </div>
     </div>
 </body>
 </html>
