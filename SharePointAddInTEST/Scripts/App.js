@@ -81,7 +81,6 @@ var crudViewModel = function () {
             "FirstName": self.FirstName,
             "LastName": self.LastName
         };
-
         $.ajax({
             url: self.url,
             type: "POST",

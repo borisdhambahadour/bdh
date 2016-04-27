@@ -8,7 +8,7 @@
 >
   <Properties>
     <Title>SharePointAddInTEST</Title>
-    <StartPage>~appWebUrl/Pages/Default.aspx?{StandardTokens}</StartPage>
+    <StartPage>~appWebUrl/Pages/Default.aspx?{StandardTokens}&amp;SPHostTitle-{HostTitle}</StartPage>
   </Properties>
 
   <AppPrincipal>

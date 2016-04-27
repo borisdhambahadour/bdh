@@ -21,21 +21,41 @@
     <!-- Ajoutez votre code JavaScript au fichier suivant -->
     <script type="text/javascript" src="../Scripts/App.js"></script>
     <script type="text/javascript" src="../Scripts/knockout-3.4.0.js"></script>
+    <script type="text/javascript">
+        (function ($) {
+            $.fn.ListItem = function () {
+
+                /** Go through each panel we've been given. */
+                return this.each(function () {
+
+                    var $listItem = $(this);
+
+                    /** Detect clicks on selectable list items. */
+                    $listItem.on('click', '.js-toggleSelection', function () {
+                        $(this).parents('.ms-ListItem').toggleClass('is-selected');
+                    });
+
+                });
+
+            };
+        })(jQuery);
+    </script>
 </asp:Content>
 
 <%-- Le balisage de l'élément Content suivant sera placé dans la partie TitleArea de la page --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server">
-    Page Title
+   Employees
 </asp:Content>
 
 <%-- Le balisage et le script de l'élément Content suivant seront placés dans la partie <body> de la page --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
      <div id="rightSide" data-bind="foreach: Customers">
         <ul class="ms-List" data-bind="click: $root.getSelectedCustomer">
-            <li class="ms-ListItem is-selectable">
+            <li class="ms-ListItem is-selectable" onclick="$(this).toggleClass('is-selected');">
                 <span class="ms-ListItem-primaryText" data-bind="text: Title"></span>
                 <span class="ms-ListItem-secondaryText" data-bind="text: FirstName"></span>
                 <span class="ms-ListItem-tertiaryText" data-bind="text: LastName"></span>
+                <div class="ms-ListItem-selectionTarget js-toggleSelection""></div>
                 <div class="ms-ListItem-actions">
                     <div class="ms-ListItem-action"><i class="ms-Icon ms-Icon--mail"></i></div>
                     <div class="ms-ListItem-action"><i class="ms-Icon ms-Icon--trash"></i></div>
@@ -140,4 +160,5 @@
     <div>
         <span data-bind="text: error"></span>
     </div>
+    <a href="AddInFZTH.html"> html page</a>
 </asp:Content>
