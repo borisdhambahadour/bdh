@@ -106,7 +106,7 @@ var crudViewModel = function () {
 
         var url = SPAppWebUrl + "/_api/SP.AppContextSite(@target)" +
       "/web/lists/getbytitle('" + listName + "')/items(" + id + ")?" +
-      "@target='" + SPHostUrl + "'";
+      "@target='" + SPHostUrl + "'";    
 
         //  var url = _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items(" + id + ")";
 

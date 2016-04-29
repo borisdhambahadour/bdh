@@ -3,12 +3,21 @@
   <Files>
     <ProjectItemFile Source="Elements.xml" Target="Scripts\" Type="ElementManifest" />
     <ProjectItemFile Source="App.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="jquery-1.9.1.min.map" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="jquery-1.9.1.min.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="jquery-1.9.1.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="jquery-1.9.1.intellisense.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="knockout-3.4.0.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="jquery.fabric.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="jquery.fabric.min.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="jquery-2.2.3.min.map" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="jquery-2.2.3.min.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="jquery-2.2.3.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="jquery-2.2.3.intellisense.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="angular.min.js.map" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="angular.min.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="angular.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="angular-mocks.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="ngOfficeUiFabric.min.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="ngOfficeUiFabric.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="ngApp.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="testNGApp.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="AppNG.js" Target="Scripts\" Type="ElementFile" />
   </Files>
 </ProjectItem>

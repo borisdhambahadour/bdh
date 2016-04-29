@@ -3,5 +3,7 @@
   <Module Name="Pages">
     <File Path="Pages\Default.aspx" Url="Pages/Default.aspx" ReplaceContent="TRUE" />
     <File Path="Pages\AddInFZTH.html" Url="Pages/AddInFZTH.html" ReplaceContent="TRUE" />
+    <File Path="Pages\ngApp.aspx" Url="Pages/ngApp.aspx" ReplaceContent="TRUE" />
+    <File Path="Pages\testNG.aspx" Url="Pages/testNG.aspx" ReplaceContent="TRUE" />
   </Module>
 </Elements>

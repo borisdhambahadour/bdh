@@ -11,5 +11,38 @@
     <ProjectItemFile Source="fabric.components.rtl.css" Target="Content\" Type="ElementFile" />
     <ProjectItemFile Source="fabric.components.min.css" Target="Content\" Type="ElementFile" />
     <ProjectItemFile Source="fabric.components.css" Target="Content\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Office.Color.Variables.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.ZIndex.Variables.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Utilities.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Typography.Variables.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Typography.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Typography.Language.Overrides.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Typography.Fonts.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Responsive.Variables.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Responsive.Utilities.Variables.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Mixins.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Mixins.RTL.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Icons.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Grid.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Common.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Color.Variables.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Color.Mixins.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Animations.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\_Fabric.Animations.RTL.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\Fabric.Utilities.Output.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\Fabric.Typography.Output.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\Fabric.Typography.Language.Overrides.Output.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\Fabric.Typography.Fonts.Output.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\Fabric.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\Fabric.RTL.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\Fabric.Responsive.Utilities.Output.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\Fabric.Icons.RTL.Output.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\Fabric.Icons.Output.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\Fabric.Icons.Font.Output.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\Fabric.Grid.Output.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\Fabric.Components.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\Fabric.Color.Mixins.Output.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\Fabric.Animations.RTL.Output.scss" Target="Content\sass\" Type="ElementFile" />
+    <ProjectItemFile Source="sass\Fabric.Animations.Output.scss" Target="Content\sass\" Type="ElementFile" />
   </Files>
 </ProjectItem>

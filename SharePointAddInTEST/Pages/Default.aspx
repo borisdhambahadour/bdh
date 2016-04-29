@@ -22,6 +22,14 @@
     <script type="text/javascript" src="../Scripts/App.js"></script>
     <script type="text/javascript" src="../Scripts/knockout-3.4.0.js"></script>
     <script type="text/javascript">
+        function hideshow(which) {
+            if (!document.getElementById)
+                return
+            if (which.style.display == "block")
+                which.style.display = "none"
+            else
+                which.style.display = "block"
+        }
         (function ($) {
             $.fn.ListItem = function () {
 
@@ -42,20 +50,20 @@
     </script>
 </asp:Content>
 
-<%-- Le balisage de l'élément Content suivant sera placé dans la partie TitleArea de la page --%>
+
 <asp:Content ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server">
-   Employees
+    Employees
 </asp:Content>
 
-<%-- Le balisage et le script de l'élément Content suivant seront placés dans la partie <body> de la page --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
-     <div id="rightSide" data-bind="foreach: Customers">
+    <div id="listitem" data-bind="foreach: Customers">
         <ul class="ms-List" data-bind="click: $root.getSelectedCustomer">
             <li class="ms-ListItem is-selectable" onclick="$(this).toggleClass('is-selected');">
                 <span class="ms-ListItem-primaryText" data-bind="text: Title"></span>
                 <span class="ms-ListItem-secondaryText" data-bind="text: FirstName"></span>
                 <span class="ms-ListItem-tertiaryText" data-bind="text: LastName"></span>
-                <div class="ms-ListItem-selectionTarget js-toggleSelection""></div>
+                <div class="ms-ListItem-selectionTarget js-toggleSelection">
+                </div>
                 <div class="ms-ListItem-actions">
                     <div class="ms-ListItem-action"><i class="ms-Icon ms-Icon--mail"></i></div>
                     <div class="ms-ListItem-action"><i class="ms-Icon ms-Icon--trash"></i></div>
@@ -65,100 +73,64 @@
             </li>
         </ul>
     </div>
-    <%--<table id="tbl">
-        <tr>
-            <td>
-                <div class="Container">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                            </tr>
-                        </thead>
-                        <tbody data-bind="foreach: Customers">
-                            <tr data-bind="click: $root.getSelectedCustomer">
-                                <td>
-                                    <span data-bind="text: Title"></span>
-                                </td>
-                                <td>
-                                    <span data-bind="text: FirstName"></span>
-                                </td>
-                                <td>
-                                    <span data-bind="text: LastName"></span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </td>
-        </tr>
-    </table>
-    <div class="ms-Table" data-bind="foreach: Customers">
-        <ul data-bind="click: $root.getSelectedCustomer">
-            <li>
-                <div class="ms-Table-row">
-                    <span class="ms-Table-rowCheck"></span>
-                    <span class="ms-Table-cell" data-bind="text: Title"></span>
-                    <span class="ms-Table-cell" data-bind="text: FirstName"></span>
-                    <span class="ms-Table-cell" data-bind="text: LastName"></span>
-                </div>
-            </li>
-        </ul>
-    </div>--%>
-    <hr> 
-   <div class="ms-CommandBar">
-    <div class="ms-CommandBar-sideCommands">
-    <div class="ms-CommandBarItem">
-      <div class="ms-CommandBarItem-linkWrapper">
-        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.clear"> <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--reactivate"></span> <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular" >Clear</span> <i class="ms-CommandBarItem-chevronDown ms-Icon ms-Icon--chevronDown"></i> </a>
-      </div>
-    </div>
-  </div>
-  <div class="ms-CommandBar-mainArea">
-    <div class="ms-CommandBarItem">
-      <div class="ms-CommandBarItem-linkWrapper">
-        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.createCustomer"> <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--star"></span> <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">New</span></a>
-      </div>
-    </div>
-    <div class="ms-CommandBarItem">
-      <div class="ms-CommandBarItem-linkWrapper">
-        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.updateCustomer"> <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--save"></span> <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Update</span> </a>
-      </div>
-    </div>
-    <div class="ms-CommandBarItem">
-      <div class="ms-CommandBarItem-linkWrapper">
-        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.deleteCustomer"> <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--trash"></span> <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Delete</span> </a>
-      </div>
-    </div>
-       <div class="ms-CommandBarItem ms-CommandBarItem--iconOnly ms-CommandBarItem-overflow">
-      <div class="ms-CommandBarItem-linkWrapper">
-        <a class="ms-CommandBarItem-link" tabindex="2"> <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--ellipsis"></span> <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Ellipsis</span> <i class="ms-CommandBarItem-chevronDown ms-Icon ms-Icon--chevronDown"></i> </a>
-      </div>
-      <ul class="ms-CommandBar-overflowMenu ms-ContextualMenu"></ul>
-    </div>
-    
-  </div>
-</div>
-     <div id="leftSide">
-    <div class="ms-TextField">
-        <label class="ms-Label">Title</label>
-        <input class="ms-TextField-field" data-bind="value: $root.Title" />
-    </div>
-    <div class="ms-TextField">
-        <label class="ms-Label">First Name</label>
-        <input class="ms-TextField-field" data-bind="value: $root.FirstName" />
-    </div>
-    <div class="ms-TextField">
-        <label class="ms-Label">Family name</label>
-        <input class="ms-TextField-field" data-bind="value: $root.LastName" />
-    </div>
-       
-    
+    <hr>
+    <button class="ms-Button ms-Button--primary" onclick="hideshow(hideShow);return false">
+        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
+        <span class="ms-Button-label">Do sth</span>
+        <span class="ms-Button-description">Description of the action this button takes</span>
+    </button>
+    <div id="hideShow" style="display: none;">
+
+        <div id="form">
+            <div class="ms-TextField">
+                <label class="ms-Label">Title</label>
+                <input class="ms-TextField-field" data-bind="value: $root.Title" />
+            </div>
+            <div class="ms-TextField">
+                <label class="ms-Label">First Name</label>
+                <input class="ms-TextField-field" data-bind="value: $root.FirstName" />
+            </div>
+            <div class="ms-TextField">
+                <label class="ms-Label">Family name</label>
+                <input class="ms-TextField-field" data-bind="value: $root.LastName" />
+            </div>
         </div>
+        <div class="ms-CommandBar">
+            <div class="ms-CommandBar-sideCommands">
+                <div class="ms-CommandBarItem">
+                    <div class="ms-CommandBarItem-linkWrapper">
+                        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.clear"><span class="ms-CommandBarItem-icon ms-Icon ms-Icon--reactivate"></span><span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Clear</span> <i class="ms-CommandBarItem-chevronDown ms-Icon ms-Icon--chevronDown"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="ms-CommandBar-mainArea">
+                <div class="ms-CommandBarItem">
+                    <div class="ms-CommandBarItem-linkWrapper">
+                        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.createCustomer"><span class="ms-CommandBarItem-icon ms-Icon ms-Icon--star"></span><span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">New</span></a>
+                    </div>
+                </div>
+                <div class="ms-CommandBarItem">
+                    <div class="ms-CommandBarItem-linkWrapper">
+                        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.updateCustomer"><span class="ms-CommandBarItem-icon ms-Icon ms-Icon--save"></span><span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Update</span> </a>
+                    </div>
+                </div>
+                <div class="ms-CommandBarItem">
+                    <div class="ms-CommandBarItem-linkWrapper">
+                        <a class="ms-CommandBarItem-link" tabindex="1" data-bind="click: $root.deleteCustomer"><span class="ms-CommandBarItem-icon ms-Icon ms-Icon--trash"></span><span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Delete</span> </a>
+                    </div>
+                </div>
+                <div class="ms-CommandBarItem ms-CommandBarItem--iconOnly ms-CommandBarItem-overflow">
+                    <div class="ms-CommandBarItem-linkWrapper">
+                        <a class="ms-CommandBarItem-link" tabindex="2"><span class="ms-CommandBarItem-icon ms-Icon ms-Icon--ellipsis"></span><span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Ellipsis</span> <i class="ms-CommandBarItem-chevronDown ms-Icon ms-Icon--chevronDown"></i></a>
+                    </div>
+                    <ul class="ms-CommandBar-overflowMenu ms-ContextualMenu"></ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <div>
         <span data-bind="text: error"></span>
     </div>
-    <a href="AddInFZTH.html"> html page</a>
+
 </asp:Content>

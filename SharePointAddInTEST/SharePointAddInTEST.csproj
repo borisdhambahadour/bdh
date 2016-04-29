@@ -43,6 +43,39 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="Content\sass\Fabric.Animations.Output.scss" />
+    <None Include="Content\sass\Fabric.Animations.RTL.Output.scss" />
+    <None Include="Content\sass\Fabric.Color.Mixins.Output.scss" />
+    <None Include="Content\sass\Fabric.Components.scss" />
+    <None Include="Content\sass\Fabric.Grid.Output.scss" />
+    <None Include="Content\sass\Fabric.Icons.Font.Output.scss" />
+    <None Include="Content\sass\Fabric.Icons.Output.scss" />
+    <None Include="Content\sass\Fabric.Icons.RTL.Output.scss" />
+    <None Include="Content\sass\Fabric.Responsive.Utilities.Output.scss" />
+    <None Include="Content\sass\Fabric.RTL.scss" />
+    <None Include="Content\sass\Fabric.scss" />
+    <None Include="Content\sass\Fabric.Typography.Fonts.Output.scss" />
+    <None Include="Content\sass\Fabric.Typography.Language.Overrides.Output.scss" />
+    <None Include="Content\sass\Fabric.Typography.Output.scss" />
+    <None Include="Content\sass\Fabric.Utilities.Output.scss" />
+    <None Include="Content\sass\_Fabric.Animations.RTL.scss" />
+    <None Include="Content\sass\_Fabric.Animations.scss" />
+    <None Include="Content\sass\_Fabric.Color.Mixins.scss" />
+    <None Include="Content\sass\_Fabric.Color.Variables.scss" />
+    <None Include="Content\sass\_Fabric.Common.scss" />
+    <None Include="Content\sass\_Fabric.Grid.scss" />
+    <None Include="Content\sass\_Fabric.Icons.scss" />
+    <None Include="Content\sass\_Fabric.Mixins.RTL.scss" />
+    <None Include="Content\sass\_Fabric.Mixins.scss" />
+    <None Include="Content\sass\_Fabric.Responsive.Utilities.Variables.scss" />
+    <None Include="Content\sass\_Fabric.Responsive.Variables.scss" />
+    <None Include="Content\sass\_Fabric.Typography.Fonts.scss" />
+    <None Include="Content\sass\_Fabric.Typography.Language.Overrides.scss" />
+    <None Include="Content\sass\_Fabric.Typography.scss" />
+    <None Include="Content\sass\_Fabric.Typography.Variables.scss" />
+    <None Include="Content\sass\_Fabric.Utilities.scss" />
+    <None Include="Content\sass\_Fabric.ZIndex.Variables.scss" />
+    <None Include="Content\sass\_Office.Color.Variables.scss" />
     <None Include="Fabric\Components\Button\Button.json" />
     <None Include="Fabric\Components\Button\Button.scss" />
     <None Include="Lists\Employes\EmployesInstance\SharePointProjectItem.spdata">
@@ -75,25 +108,36 @@
     <Content Include="Lists\Employes\EmployesInstance\Elements.xml" />
     <Content Include="Lists\Employes\Schema.xml" />
     <Content Include="Pages\AddInFZTH.html" />
+    <Content Include="Pages\testNG.aspx" />
+    <Content Include="Pages\ngApp.aspx" />
     <Content Include="Pages\Elements.xml" />
     <Content Include="Pages\Default.aspx" />
+    <None Include="Scripts\angular.min.js.map" />
+    <None Include="Scripts\jquery-2.2.3.min.map" />
     <None Include="SharePointProjectItem.spdata">
       <SharePointProjectItemId>{00e9e091-f9f9-4f63-8845-6cd7e6efcef2}</SharePointProjectItemId>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{41ba9b11-ac4b-468c-b8b3-b4d6cdf64876}</SharePointProjectItemId>
     </None>
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\AppNG.js" />
     <Content Include="Scripts\Elements.xml" />
     <Content Include="Scripts\App.js" />
-    <Content Include="Scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.3.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\jquery.fabric.js" />
     <Content Include="Scripts\jquery.fabric.min.js" />
     <Content Include="Scripts\knockout-3.4.0.js" />
+    <Content Include="Scripts\ngApp.js" />
+    <Content Include="Scripts\ngOfficeUiFabric.js" />
+    <Content Include="Scripts\ngOfficeUiFabric.min.js" />
+    <Content Include="Scripts\testNGApp.js" />
     <Content Include="Scripts\_references.js" />
   </ItemGroup>
   <ItemGroup>
