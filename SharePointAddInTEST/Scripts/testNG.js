@@ -71,7 +71,7 @@ angular.module("EmployeApp", ["ui.router", "ngResource"])
             Title: employe.title,
             EmployeName: employe.name,
             EmployeFirstName: employe.firstName,
-            Employephone: bemployeook.phone,
+            Employephone: employe.phone,
         }).success(function (data) {
             //resolve something
             dfd.resolve(true);

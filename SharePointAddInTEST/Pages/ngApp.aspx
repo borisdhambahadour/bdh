@@ -8,7 +8,6 @@
 
 <%-- Le balisage et le script de l'élément Content suivant seront placés dans la partie <head> de la page --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
-    <script type="text/javascript" src="../Scripts/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.js"></script>
     <meta name="WebPartPageExpansion" content="full" />
@@ -20,6 +19,7 @@
 
     <!-- Ajoutez votre code JavaScript au fichier suivant -->
     <script type="text/javascript" src="../Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="../Scripts/ngOfficeUiFabric.min.js"></script>
     <script type="text/javascript" src="../Scripts/AppNG.js"></script>
 </asp:Content>
 
@@ -31,10 +31,27 @@
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
     <div ng-app="list-module">
         <div ng-controller="list-controller">
-            <ul style="list-style-type: none;">
-                <li ng-repeat="item in listitems" style="align: left;">{{item.Title}} - {{item.FirstName}} - {{item.Name}} - {{item.Phone}}
-                </li>
-            </ul>
+            <uif-button uif-type="primary" ng-click="addEmploye()">Add new employe</uif-button>
+            <uif-list uif-item-select-mode="single">
+             <uif-list-item ng-repeat="item in listitems">
+               <uif-list-item-primary-text>{{item.Name}}</uif-list-item-primary-text>
+               <uif-list-item-secondary-text> {{item.FirstName}}</uif-list-item-secondary-text>
+               <uif-list-item-tertiary-text>{{item.Title}}</uif-list-item-tertiary-text>
+               <uif-list-item-meta-text>{{item.Phone}}</uif-list-item-meta-text>
+               <uif-list-item-selection-target></uif-list-item-selection-target>
+               <uif-list-item-actions>
+                 <uif-list-item-action ng-click="mail(item)">
+                   <uif-icon uif-type="mail"></uif-icon>
+                 </uif-list-item-action>
+                 <uif-list-item-action ng-click="deleteEmploye(item)">
+                   <uif-icon uif-type="trash"></uif-icon>
+                 </uif-list-item-action>
+                 <uif-list-item-action ng-click="pin(item)">
+                   <uif-icon uif-type="pinLeft"></uif-icon>
+                 </uif-list-item-action>
+               </uif-list-item-actions>
+             </uif-list-item>
+        </uif-list>
         </div>
     </div>
 </asp:Content>
